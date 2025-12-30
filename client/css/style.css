@@ -26,6 +26,7 @@ flex-direction: column;
 	flex-direction: column;
 	box-shadow: 2px 0 8px #e0e0e0a0;
 	transition: opacity 0.3s ease;
+	z-index: 1201 !important;
 }
 
 .sidebar-user {
@@ -140,6 +141,21 @@ flex-direction: column;
 	color: #222;
 	margin-bottom: 12px;
 	padding: 8px 0;
+}
+
+.settings-item .clear-all-data {
+	width: 100%;
+	margin-top: 20px;
+	background: #de757f;
+	border: none;
+	color: #fff;
+	font-size: 1.2rem;
+	font-weight: 500;
+	border-radius: 12px;
+	padding: 14px 0;
+	cursor: pointer;
+	letter-spacing: 1px;
+	transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .settings-item-label {

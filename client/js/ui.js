@@ -8,7 +8,8 @@ import {
 	roomsData,
 	activeRoomIndex,
 	togglePrivateChat,
-	exitRoom
+	exitRoom,
+	saveRoomData
 } from './room.js';
 import {
 	escapeHTML
@@ -456,6 +457,9 @@ export function loginFormHandler(modal) {
 			if (!success && btn) {
 				btn.disabled = false;
 				btn.innerText = 'ENTER'
+			} else {
+				localStorage.setItem('user-name', userName)
+				saveRoomData();
 			}
 		})
 	}
@@ -465,8 +469,10 @@ export function loginFormHandler(modal) {
 // Generate login form HTML
 export function generateLoginForm(isModal = false) {
 	const idPrefix = isModal ? '-modal' : '';
+	const historyUsrName = localStorage.getItem('user-name');
+	const usrName = historyUsrName || '';
 	return `		<div class="input-group">
-			<input id="userName${idPrefix}" type="text" autocomplete="username" required minlength="1" maxlength="15" placeholder="">
+			<input id="userName${idPrefix}" type="text" autocomplete="username" required minlength="1" maxlength="15" placeholder="" value="${usrName}" ${Boolean(historyUsrName) ? 'disabled' : ''}>
 			<label for="userName${idPrefix}" class="floating-label">${t('ui.username', 'Username')}</label>
 		</div>
 		<div class="input-group">

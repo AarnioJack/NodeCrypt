@@ -102,6 +102,7 @@ class NodeCrypt {
 		this.serverShared = null;
 		this.channel = {};
 		try {
+			//ws://localhost:4399
 			this.connection = new WebSocket(this.config.wsAddress);
 			this.connection.onopen = this.onOpen;
 			this.connection.onmessage = this.onMessage;

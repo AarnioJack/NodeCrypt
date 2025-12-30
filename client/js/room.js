@@ -57,7 +57,8 @@ export function switchRoom(index) {
 	renderMainHeader();
 	renderUserList(false);
 	renderChatArea();
-	updateChatInputStyle()
+	updateChatInputStyle();
+	saveRoomData();
 }
 
 // Set the sidebar avatar
@@ -374,6 +375,31 @@ export function exitRoom() {
 		}
 	}
 	return false
+}
+
+export function setRoomData(payload) {
+	if (Array.isArray(payload)) {
+		payload.forEach(item => {
+			const newRd = getNewRoomData();
+			newRd.roomName = item.roomName;
+			newRd.myUserName = item.myUserName;
+			newRd.password = item.password;
+			roomsData.push(newRd);
+		})
+		renderRooms()
+	}
+}
+
+export function saveRoomData(){
+	if (Array.isArray(roomsData) && roomsData.length > 0) {
+		const tempArr = [];
+		roomsData.forEach(item => {
+			const {roomName, myUserName, password} = item;
+			tempArr.push({roomName, myUserName, password});
+		})
+		localStorage.setItem('room-data', JSON.stringify(tempArr));
+		localStorage.setItem('active-room-index', activeRoomIndex);
+	}
 }
 
 export { roomsData, activeRoomIndex };

@@ -51,7 +51,7 @@ import {
 import {
 	roomsData,         // 当前所有房间的数据 / Data of all rooms
 	activeRoomIndex,   // 当前激活的房间索引 / Index of the active room
-	joinRoom           // 加入房间的函数 / Function to join a room
+	joinRoom, setRoomData           // 加入房间的函数 / Function to join a room
 } from './room.js';
 
 // 从 chat.js 中导入聊天功能相关的函数
@@ -335,6 +335,21 @@ window.addEventListener('DOMContentLoaded', () => {
 	renderMainHeader();
 	renderUserList();
 	setupTabs();
+	const roomData = JSON.parse(localStorage.getItem('room-data'));
+	if (Array.isArray(roomData) && roomData.length > 0) {
+		const historyData = roomData[localStorage.getItem('active-room-index') || 0];
+		const userName = historyData.myUserName;
+		const roomName = historyData.roomName;
+		const password = historyData.password;
+		setRoomData(roomData);
+		window.joinRoom(userName, roomName, password, null, function(success) {
+			if (!success && btn) {
+				const btn = document.querySelector('#login-form .login-btn');
+				btn.disabled = false;
+				btn.innerText = 'ENTER'
+			}
+		})
+	}
 
 	const roomList = $id('room-list');
 	const sidebar = $id('sidebar');

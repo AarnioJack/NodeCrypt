@@ -227,6 +227,11 @@ body {
 	box-shadow: 0 0 0 3px rgba(48, 168, 247, 0.1);
 }
 
+.input-group input:disabled {
+	color: #0000003d;
+	background: #e9ecef;
+}
+
 .login-btn {
 	margin-top: 20px;
 	background: #30a8f7;

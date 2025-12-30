@@ -44,7 +44,9 @@ const LANGUAGES = {
 			'settings.language_switch': 'Language',
 			'settings.chinese': 'Chinese',
 			'settings.english': 'English',
-			
+			'settings.system': 'System Settings',
+			'settings.system.clearAllData': 'Clear All Data',
+
 			// File upload and transfer
 			'file.selected_files': 'Selected Files',
 			'file.clear_all': 'Clear All',
@@ -168,7 +170,9 @@ const LANGUAGES = {
 			'settings.language_switch': '语言',
 			'settings.chinese': '中文',
 			'settings.english': 'English',
-			
+			'settings.system': '系统设置',
+			'settings.system.clearAllData': '清除所有数据',
+
 			// File upload and transfer
 			'file.selected_files': '已选择的文件',
 			'file.clear_all': '清空所有',

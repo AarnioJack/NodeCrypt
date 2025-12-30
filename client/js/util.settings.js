@@ -139,6 +139,13 @@ function setupSettingsPanel() {
 				`).join('')}
 			</div>
 		</div>
+		
+		<div class="settings-section">
+			<div class="settings-section-title">${t('settings.system', 'System Settings')}</div>
+			<div class="settings-item">
+				<button type="submit" class="clear-all-data">${t('settings.system.clearAllData', 'Clear All Data')}</button>
+			</div>
+		</div>
 	`;	const notifyCheckbox = $('#settings-notify', settingsContent);
 	const soundCheckbox = $('#settings-sound', settingsContent);
 	const languageSelect = $('#settings-language', settingsContent);
@@ -359,6 +366,14 @@ function setupSettingsPanel() {
 			}
 		});
 	}
+	const clearAllBtn = $('.clear-all-data', settingsContent);
+	if (clearAllBtn) {
+		on(clearAllBtn, 'click', e => {
+			localStorage.clear();
+			window.location.reload();
+		});
+	}
+
 }
 
 // Check if device is mobile
