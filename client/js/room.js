@@ -391,15 +391,19 @@ export function setRoomData(payload) {
 }
 
 export function saveRoomData(){
-	if (Array.isArray(roomsData) && roomsData.length > 0) {
-		const tempArr = [];
-		roomsData.forEach(item => {
-			const {roomName, myUserName, password} = item;
+	const tempArr = [];
+	const seen = new Set();
+	roomsData.forEach(item => {
+		const {roomName, myUserName, password} = item;
+		// 使用 roomName 和 password 作为去重键，保留首次出现的项
+		const key = `${roomName}||${password ?? ''}`;
+		if (!seen.has(key)) {
+			seen.add(key);
 			tempArr.push({roomName, myUserName, password});
-		})
-		localStorage.setItem('room-data', JSON.stringify(tempArr));
-		localStorage.setItem('active-room-index', activeRoomIndex);
-	}
+		}
+	});
+	localStorage.setItem('room-data', JSON.stringify(tempArr));
+	localStorage.setItem('active-room-index', activeRoomIndex);
 }
 
 export { roomsData, activeRoomIndex };
